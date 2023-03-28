@@ -22,6 +22,10 @@ func NewServer() *Server {
 	return s
 }
 
+func (s *Server) Use(middlewares ...Middleware) {
+	s.middlewares = append(s.middlewares, middlewares...)
+}
+
 func (s *Server) Run(addr string) {
 	s.startHandler = s.router.handler()
 
